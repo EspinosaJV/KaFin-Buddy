@@ -1,0 +1,36 @@
+{
+    "Food": {
+        "group": "Living",
+        "type": "Expense"
+    },
+
+    "Groceries": {
+        "group": "Living",
+        "type": "Expense"
+    },
+
+    "Transportation": {
+        "group": "Living",
+        "type": "Expense"
+    },
+
+    "Entertainment": {
+        "group": "Lifestyle",
+        "type": "Expense"
+    },
+
+    "Shopping": {
+        "group": "Lifestyle",
+        "type": "Expense"
+    },
+
+    "Salary": {
+        "group": "Income",
+        "type": "Income"
+    },
+
+    "Savings": {
+        "group": "Financial",
+        "type": "Transfer"
+    }
+}

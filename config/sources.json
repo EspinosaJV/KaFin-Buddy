@@ -1,0 +1,12 @@
+{
+    "allowed_sources": [
+        "Cash",
+        "GCash",
+        "Maya",
+        "BPI",
+        "Metrobank",
+        "BDO",
+        "UnionBank",
+        "Credit Card"
+    ]
+}

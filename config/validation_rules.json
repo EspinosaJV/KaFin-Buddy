@@ -1,0 +1,21 @@
+{
+    "required_columns": [
+        "Date",
+        "Source",
+        "Description",
+        "Category",
+        "Amount"
+    ],
+
+    "amount": {
+        "minimum": 0.01
+    },
+
+    "description": {
+        "allow_blank": false
+    },
+
+    "notes": {
+        "required": false
+    }
+}
