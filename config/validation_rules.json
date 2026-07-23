@@ -9,6 +9,10 @@
     "optional_columns": [
         "Notes"
     ],
+    "data_types": {
+        "Date": "datetime",
+        "Amount":"numeric"
+    },
     "amount": {
         "minimum": 0.01
     },

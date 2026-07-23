@@ -70,19 +70,5 @@ def validate_required_fields(df: pd.DataFrame, rules: dict) -> list:
 
     return errors
 
-if __name__ == "__main__":
-
-    df = pd.DataFrame({
-        "Date": [""],
-        "Source": ["BPI"],
-        "Description": [""],
-        "Category": ["Groceries"],
-        "Amount": [137]
-    })
-
-    rules = load_config("validation_rules.json")
-
-    errors = validate_required_fields(df, rules)
-
-    print("Required Field Validation Errors:")
-    print(errors)
+def validate_data_types(df: pd.DataFrame, rules: dict) -> list:
+    
