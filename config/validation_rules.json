@@ -6,15 +6,15 @@
         "Category",
         "Amount"
     ],
-
+    "optional_columns": [
+        "Notes"
+    ],
     "amount": {
         "minimum": 0.01
     },
-
     "description": {
         "allow_blank": false
     },
-
     "notes": {
         "required": false
     }
