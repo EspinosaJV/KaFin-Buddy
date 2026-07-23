@@ -71,4 +71,41 @@ def validate_required_fields(df: pd.DataFrame, rules: dict) -> list:
     return errors
 
 def validate_data_types(df: pd.DataFrame, rules: dict) -> list:
-    
+    """
+    Validates that transaction fields contain the expected data types.
+
+    Args:
+        df (pd.DataFrame): Transaction DataFrame.
+        rules (dict): Validation rules.
+
+    Returns:
+        list: Data type validation errors.
+    """
+
+    data_type_rules = rules["data_types"]
+    errors = []
+
+    for index, row in df.iterrows():
+        for column, expected_type in data_type_rules.items():
+            value = row[column]
+            if expected_type == "datetime":
+                try:
+                    pd.to_datetime(value)
+                except (ValueError, TypeError):
+                    errors.append({
+                        "row": index + 2,
+                        "column": column,
+                        "value": value,
+                        "error": "Value must be a valid date"
+                    })
+            elif expected_type == "numeric":
+                try:
+                    pd.to_numeric(value)
+                except (ValueError, TypeError):
+                    errors.append({
+                        "row": index + 2,
+                        "column": column,
+                        "value": value,
+                        "error": "Value must be numeric"
+                    })
+    return errors
