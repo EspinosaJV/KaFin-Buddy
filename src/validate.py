@@ -115,11 +115,11 @@ def validate_sources(df: pd.DataFrame, sources: dict) -> list:
     Validates that all transaction sources are allowed.
 
     Args:
-     - df (pd.DataFrame): Transaction DataFrame
-     - sources (dict): Allowed source configuration.
+        df (pd.DataFrame): Transaction DataFrame.
+        sources (dict): Allowed source configuration.
 
     Returns:
-     - list: Source validation errors.
+        list: Source validation errors.
     """
 
     allowed_sources = sources["allowed_sources"]
