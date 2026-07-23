@@ -109,3 +109,32 @@ def validate_data_types(df: pd.DataFrame, rules: dict) -> list:
                         "error": "Value must be numeric"
                     })
     return errors
+
+def validate_sources(df: pd.DataFrame, sources: dict) -> list:
+    """
+    Validates that all transaction sources are allowed.
+
+    Args:
+     - df (pd.DataFrame): Transaction DataFrame
+     - sources (dict): Allowed source configuration.
+
+    Returns:
+     - list: Source validation errors.
+    """
+
+    allowed_sources = sources["allowed_sources"]
+    errors = []
+
+    for index, row in df.iterrows():
+
+        source = row["Source"]
+
+        if source not in allowed_sources:
+            errors.append({
+                "row": index + 2,
+                "column": "Source",
+                "value": source,
+                "error": "Source is not an allowed value"
+            })
+
+    return errors
