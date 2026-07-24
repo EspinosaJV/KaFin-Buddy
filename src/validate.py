@@ -138,3 +138,32 @@ def validate_sources(df: pd.DataFrame, sources: dict) -> list:
             })
 
     return errors
+
+def validate_categories(df: pd.DataFrame, categories: dict) -> list:
+    """
+    Validates that all transaction categories are allowed.
+
+    Args:
+     - df (pd.DataFrame): Transaction DataFrame.
+     - categories (dict): Category configuration.
+
+    Returns:
+     - list: Category validation errors.
+    """
+
+    allowed_categories = categories.keys()
+    errors = []
+
+    for index, row in df.iterrows():
+
+        category = row["Category"]
+
+        if category not in allowed_categories:
+            errors.append({
+                "row": index + 2,
+                "column": "Category",
+                "value": category,
+                "error": "Category is not an allowed value"
+            })
+
+    return errors
