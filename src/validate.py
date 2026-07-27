@@ -202,3 +202,58 @@ def validate_amounts(df: pd.DataFrame, rules: dict) -> list:
             })
 
     return errors
+
+def validate_data(df: pd.DataFrame, rules: dict, sources: dict, categories: dict) -> dict:
+    """
+    Runs the complete transaction validation pipeline.
+
+    Args:
+     - df (pd.DataFrame): Transaction DataFrame.
+     - rules (dict): Validation rules.
+     - sources (dict): Allowed source configuration.
+     - categories (dict): Category configuration
+
+    Returns:
+     - dict: Validation result containing validity status and errors.
+    """
+
+    errors = []
+
+    # Step 1: Validate schema
+    schema_errors = validate_schema(df, rules)
+
+    if schema_errors:
+        return {
+            "is_valid": False,
+            "errors": schema_errors
+        }
+
+    # Step 2: Validate required fields
+    errors.extend(
+        validate_required_fields(df, rules)
+    )
+
+    # Step 3: Validate data types
+    errors.extend(
+        validate_data_types(df, rules)
+    )
+
+    # Step 4: Validate sources
+    errors.extend(
+        validate_sources(df, sources)
+    )
+
+    # Step 5: Validate categories
+    errors.extend(
+        validate_categories(df, categories)
+    )
+
+    # Step 6: Validate amounts
+    errors.extend(
+        validate_amounts(df, rules)
+    )
+
+    return {
+        "is_valid": len(errors) == 0,
+        "errors": errors
+    }
