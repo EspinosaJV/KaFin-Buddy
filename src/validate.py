@@ -167,3 +167,38 @@ def validate_categories(df: pd.DataFrame, categories: dict) -> list:
             })
 
     return errors
+
+def validate_amounts(df: pd.DataFrame, rules: dict) -> list:
+    """
+    Validates that transaction amounts meet the configured minimum value.
+
+    Args: 
+     - df (pd.DataFrame): Transaction DataFrame
+     - rules (dict): Validation rules.
+
+    Returns:
+     - list: Amount validation errors.
+    """
+
+    minimum_amount = rules["amount"]["minimum"]
+    errors = []
+
+    for index, row in df.iterrows():
+
+        amount = row["Amount"]
+
+        try:
+            numeric_amount = pd.to_numeric(amount)
+
+        except (ValueError, TypeError):
+            continue
+
+        if numeric_amount < minimum_amount:
+            errors.append({
+                "row": index + 2,
+                "column": "Amount",
+                "value": amount,
+                "error": f"Amount must be at least {minimum_amount}"
+            })
+
+    return errors
