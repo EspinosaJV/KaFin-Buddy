@@ -38,9 +38,3 @@ def load_config(filename: str) -> dict:
         config = json.load(file)
 
     return config
-
-if __name__ == "__main__":
-    sources = load_config("sources.json")
-
-    print("Loaded configuration:")
-    print(sources)
